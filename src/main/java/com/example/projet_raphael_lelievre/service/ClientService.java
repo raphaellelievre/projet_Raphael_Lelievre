@@ -1,7 +1,10 @@
 package com.example.projet_raphael_lelievre.service;
 
 import com.example.projet_raphael_lelievre.dto.ClientDTO;
+import com.example.projet_raphael_lelievre.dto.CompteDTO;
+import com.example.projet_raphael_lelievre.dto.RapportClientDTO;
 import com.example.projet_raphael_lelievre.entity.Client;
+import com.example.projet_raphael_lelievre.entity.Compte;
 import com.example.projet_raphael_lelievre.entity.Conseiller;
 import com.example.projet_raphael_lelievre.repository.ClientRepository;
 import com.example.projet_raphael_lelievre.repository.ConseillerRepository;
@@ -16,6 +19,7 @@ public class ClientService {
 
     private final ClientRepository clientRepository;
     private final ConseillerRepository conseillerRepository;
+    private final CompteService compteService;
 
     public ClientDTO create(ClientDTO dto) {
         Conseiller conseiller = conseillerRepository.findById(dto.getConseillerId())
@@ -77,6 +81,24 @@ public class ClientService {
             .ville(c.getVille())
             .telephone(c.getTelephone())
             .conseillerId(c.getConseiller().getId())
+            .build();
+    }
+
+    public RapportClientDTO genererRapport(Long clientId) {
+        Client client = clientRepository.findById(clientId)
+            .orElseThrow(() -> new RuntimeException("Client introuvable"));
+
+        List<CompteDTO> comptesDTO = client.getComptes()
+            .stream().map(c -> compteService.toDTO(c)).toList();
+
+        double total = client.getComptes().stream().mapToDouble(Compte::getSolde).sum();
+
+        return RapportClientDTO.builder()
+            .clientId(client.getId())
+            .nom(client.getNom())
+            .prenom(client.getPrenom())
+            .comptes(comptesDTO)
+            .totalSolde(total)
             .build();
     }
 }

@@ -76,7 +76,7 @@ public class CompteService {
         credit(idDestination, montant);
     }
 
-    private CompteDTO toDTO(Compte c) {
+    public CompteDTO toDTO(Compte c) {
         if (c instanceof CompteCourant cc) {
             return CompteDTO.builder()
                 .id(cc.getId())
