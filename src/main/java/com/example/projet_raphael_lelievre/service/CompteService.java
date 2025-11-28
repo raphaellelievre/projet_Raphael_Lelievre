@@ -8,6 +8,7 @@ import com.example.projet_raphael_lelievre.repository.CompteCourantRepository;
 import com.example.projet_raphael_lelievre.repository.CompteEpargneRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -61,6 +62,18 @@ public class CompteService {
         compteRepository.save(compte);
 
         return toDTO(compte);
+    }
+
+    @Transactional
+    public void virement(Long idSource, Long idDestination, Double montant) {
+        if (idSource.equals(idDestination)) {
+            throw new RuntimeException("Les comptes doivent être différents");
+        }
+        if (montant == null || montant <= 0) {
+            throw new RuntimeException("Montant invalide");
+        }
+        debit(idSource, montant);
+        credit(idDestination, montant);
     }
 
     private CompteDTO toDTO(Compte c) {

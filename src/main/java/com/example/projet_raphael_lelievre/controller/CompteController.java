@@ -33,4 +33,15 @@ public class CompteController {
     public CompteDTO debit(@PathVariable Long id, @RequestParam Double montant) {
         return compteService.debit(id, montant);
     }
+
+    @PostMapping("/virement")
+    public String virement(
+            @RequestParam Long sourceId,
+            @RequestParam Long destinationId,
+            @RequestParam Double montant) {
+
+        compteService.virement(sourceId, destinationId, montant);
+        return "Virement effectué avec succès";
+    }
+
 }
