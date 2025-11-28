@@ -2,6 +2,7 @@ package com.example.projet_raphael_lelievre.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "compte_epargne")
@@ -9,7 +10,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 public class CompteEpargne extends Compte {
 
     @Column(name = "taux_remuneration", nullable = false)

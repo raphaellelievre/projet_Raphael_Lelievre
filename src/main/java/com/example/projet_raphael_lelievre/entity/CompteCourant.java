@@ -2,6 +2,7 @@ package com.example.projet_raphael_lelievre.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "compte_courant")
@@ -9,7 +10,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 public class CompteCourant extends Compte {
 
     @Column(name = "decouvert_autorise", nullable = false)

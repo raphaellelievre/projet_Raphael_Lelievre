@@ -2,14 +2,18 @@ package com.example.projet_raphael_lelievre.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
+@SuperBuilder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "comptes")
 @Inheritance(strategy = InheritanceType.JOINED)
-@Getter
-@Setter
 public abstract class Compte {
 
     @Id
