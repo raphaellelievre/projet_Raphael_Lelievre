@@ -3,6 +3,9 @@ package com.example.projet_raphael_lelievre.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "clients")
 @Getter
@@ -38,4 +41,8 @@ public class Client {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "conseiller_id", nullable = false)
     private Conseiller conseiller;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<Compte> comptes = new ArrayList<>();
 }
