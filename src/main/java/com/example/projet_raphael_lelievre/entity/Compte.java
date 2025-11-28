@@ -25,6 +25,7 @@ public abstract class Compte {
     @Column(name = "date_ouverture", nullable = false)
     private LocalDate dateOuverture;
 
+    // 1 propriétaire par compte
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;

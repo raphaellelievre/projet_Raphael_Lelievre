@@ -35,6 +35,7 @@ public class Conseiller {
     @JoinColumn(name = "agence_code", nullable = false)
     private Agence agence;
 
+    // 10 clients maximum
     @OneToMany(mappedBy = "conseiller", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<Client> clients = new ArrayList<>();

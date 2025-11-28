@@ -34,6 +34,7 @@ public class Client {
     @Column(name = "telephone", length = 32)
     private String telephone;
 
+    // 1 conseiller par client
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "conseiller_id", nullable = false)
     private Conseiller conseiller;
