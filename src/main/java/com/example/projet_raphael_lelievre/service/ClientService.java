@@ -20,6 +20,7 @@ public class ClientService {
     private final ClientRepository clientRepository;
     private final ConseillerRepository conseillerRepository;
     private final CompteService compteService;
+    private final CarteBancaireService carteBancaireService;
 
     public ClientDTO create(ClientDTO dto) {
         Conseiller conseiller = conseillerRepository.findById(dto.getConseillerId())
@@ -68,6 +69,7 @@ public class ClientService {
     public void delete(Long id) {
         Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Client introuvable"));
+        carteBancaireService.disableCardsForClient(id);
         clientRepository.delete(client);
     }
 
