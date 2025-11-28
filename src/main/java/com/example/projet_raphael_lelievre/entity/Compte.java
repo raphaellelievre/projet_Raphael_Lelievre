@@ -10,9 +10,6 @@ import java.time.LocalDate;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public abstract class Compte {
 
     @Id
