@@ -48,7 +48,6 @@ Java : **17**
 - H2 Database  
 - Maven  
 - Lombok  
-- JUnit 5 (tests)
 
 ---
 
@@ -71,24 +70,12 @@ Java : **17**
 
 ---
 
-## Tests
-
-Tests unitaires prévus pour :  
-- opérations de débit/crédit  
-- validation des règles métier  
-- virements  
-- audit  
-
-Les tests sont un plus dans l’évaluation.
-
----
-
 ## Documentation
 
 La documentation finale inclura :  
 - Diagramme UML (architecture + classes métier)  
 - User stories minimales  
-- Bilan du projet : reste à faire, difficultés rencontrées, fonctionnalités réalisées
+- Bilan du projet
 
 ---
 
